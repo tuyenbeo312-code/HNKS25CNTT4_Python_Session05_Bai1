@@ -1,17 +1,33 @@
       
-# code sau khi sửa
-
 branch_count = int(input("Nhập số lượng chi nhánh: "))
 month_count = 3
 
+# Danh sách lưu doanh thu
+revenues = []
+
+# Nhập dữ liệu
 for branch in range(1, branch_count + 1):
+    branch_data = []
+
     for month in range(1, month_count + 1):
         revenue = int(input(f"Nhập doanh thu Chi nhánh {branch}, tháng {month}: "))
-        print(f"Chi nhánh {branch}, tháng {month}: {revenue} triệu đồng")
+        branch_data.append(revenue)
 
-# Báo cáo không gom theo từng chi nhánh vì vòng lặp đang bị đảo: bạn duyệt tháng theo số chi nhánh và chi nhánh theo số tháng, 
-# nên dữ liệu nhập vào không theo đúng cấu trúc nghiệp vụ.
+    revenues.append(branch_data)
 
-# Theo yêu cầu gom dữ liệu theo chi nhánh: vòng lặp ngoài phải duyệt theo chi nhánh.
+# In báo cáo sau khi nhập xong
+print("\n----- Kết quả -----")
 
-# Mỗi chi nhánh có nhiều tháng, nên vòng lặp trong duyệt theo tháng
+for branch in range(branch_count):
+    for month in range(month_count):
+        print(
+            f"Chi nhánh {branch + 1}, tháng {month + 1}: "
+            f"{revenues[branch][month]} triệu đồng"
+              
+# Phân tích lỗi:
+# Code cũ bị sai vì duyệt theo tháng trước,
+# nên báo cáo không gom theo từng chi nhánh.
+
+# Đúng nghiệp vụ:
+# - Vòng lặp ngoài: duyệt chi nhánh
+# - Vòng lặp trong: duyệt tháng
